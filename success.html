@@ -5,72 +5,262 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Payment Successful | BrokerSystem</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: #f4f7f6;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(145deg, #f0f4f8 0%, #e9eef2 100%);
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
+            padding: 20px;
         }
+
         .card {
-            background: white;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(4px);
+            padding: 48px 40px;
+            border-radius: 32px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0,0,0,0.02);
             text-align: center;
-            max-width: 400px;
+            max-width: 480px;
             width: 100%;
+            transition: transform 0.2s ease;
+            animation: fadeScale 0.3s ease-out;
         }
+
+        @keyframes fadeScale {
+            0% { opacity: 0; transform: scale(0.98); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
         .icon-circle {
-            width: 80px;
-            height: 80px;
-            background-color: #e8f5e9;
+            width: 88px;
+            height: 88px;
+            background: linear-gradient(135deg, #2e7d32 0%, #4caf50 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 20px;
+            margin: 0 auto 24px;
+            box-shadow: 0 10px 20px -5px rgba(46, 125, 50, 0.3);
         }
+
         .icon-check {
-            color: #2e7d32;
-            font-size: 40px;
+            color: white;
+            font-size: 44px;
+            font-weight: 300;
             line-height: 1;
+            transform: scaleX(-1);
         }
+
         h1 {
-            color: #1a1a1a;
-            font-size: 24px;
-            margin-bottom: 10px;
+            color: #0a1e2c;
+            font-size: 32px;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 12px;
         }
-        p {
-            color: #666;
-            font-size: 16px;
+
+        .subtitle {
+            color: #547087;
+            font-size: 18px;
             line-height: 1.5;
-            margin-bottom: 30px;
+            margin-bottom: 32px;
+            font-weight: 400;
         }
+
+        .order-section {
+            background: #f8fafc;
+            border-radius: 20px;
+            padding: 24px 20px;
+            margin: 32px 0;
+            border: 1px solid #e2e9f0;
+        }
+
+        .order-label {
+            color: #5f7d9c;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            margin-bottom: 8px;
+            display: block;
+        }
+
         .order-id {
-            background: #f5f5f5;
-            padding: 10px;
-            border-radius: 6px;
-            font-family: monospace;
-            color: #333;
-            letter-spacing: 1px;
-            margin-bottom: 20px;
+            background: white;
+            padding: 12px 16px;
+            border-radius: 14px;
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            font-size: 18px;
+            font-weight: 500;
+            color: #0b2a41;
+            letter-spacing: 0.5px;
+            border: 1px solid #dae2ed;
             display: inline-block;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
         }
+
+        /* Save card card */
+        .save-card-panel {
+            background: linear-gradient(115deg, #f1f5f9 0%, #f9fcff 100%);
+            border-radius: 24px;
+            padding: 28px 24px;
+            margin: 32px 0 28px;
+            text-align: left;
+            border: 1px solid #d9e6f2;
+            box-shadow: 0 6px 14px rgba(0, 32, 64, 0.04);
+        }
+
+        .save-card-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .lock-icon {
+            background: #ffffff;
+            width: 48px;
+            height: 48px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            box-shadow: 0 6px 12px -6px rgba(0,64,128,0.2);
+            border: 1px solid #cbdae9;
+            color: #1e4a6b;
+        }
+
+        .save-card-header h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #103a5c;
+            letter-spacing: -0.01em;
+        }
+
+        .save-card-header p {
+            color: #496f8f;
+            font-size: 14px;
+            margin-top: 2px;
+        }
+
+        .toggle-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: white;
+            padding: 14px 18px;
+            border-radius: 60px;
+            border: 1px solid #cbddee;
+            margin-bottom: 18px;
+        }
+
+        .toggle-container span {
+            font-weight: 500;
+            color: #15415e;
+            font-size: 16px;
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 52px;
+            height: 28px;
+            background: #cbddee;
+            border-radius: 40px;
+            transition: background 0.15s;
+            cursor: pointer;
+        }
+
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            background: white;
+            border-radius: 50%;
+            top: 2px;
+            left: 2px;
+            box-shadow: 0 2px 6px rgba(0,20,40,0.2);
+            transition: transform 0.15s;
+        }
+
+        .toggle-checkbox {
+            display: none;
+        }
+
+        .toggle-checkbox:checked + .toggle-switch {
+            background: #1e6b3b;
+        }
+
+        .toggle-checkbox:checked + .toggle-switch::after {
+            transform: translateX(24px);
+        }
+
+        .card-preview {
+            background: white;
+            padding: 16px;
+            border-radius: 18px;
+            border: 1px solid #d8e5f0;
+            margin-top: 16px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .card-chip {
+            background: linear-gradient(145deg, #b8862c, #dba542);
+            width: 36px;
+            height: 26px;
+            border-radius: 6px;
+        }
+
+        .card-digits {
+            color: #193f5c;
+            font-weight: 500;
+            font-size: 16px;
+            letter-spacing: 1px;
+        }
+
         .btn {
-            background-color: #000;
+            background: #0a1e2c;
             color: white;
             text-decoration: none;
-            padding: 12px 30px;
-            border-radius: 6px;
+            padding: 16px 32px;
+            border-radius: 60px;
             font-weight: 600;
+            font-size: 16px;
             display: inline-block;
-            transition: background-color 0.2s;
+            transition: all 0.2s;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 8px 18px -6px rgba(10,30,44,0.3);
+            width: 100%;
+            max-width: 260px;
+            margin-top: 8px;
         }
+
         .btn:hover {
-            background-color: #333;
+            background: #143e58;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px -8px rgba(0,40,70,0.4);
+        }
+
+        .footer-note {
+            color: #6f8da8;
+            font-size: 14px;
+            margin-top: 24px;
+            border-top: 1px dashed #c9dcee;
+            padding-top: 24px;
         }
     </style>
 </head>
@@ -79,26 +269,71 @@
         <div class="icon-circle">
             <span class="icon-check">✔</span>
         </div>
-        <h1>Payment Successful</h1>
-        <p>Thank you! Your transaction has been completed successfully.</p>
+        <h1>Payment successful</h1>
+        <div class="subtitle">Your transaction has been confirmed.</div>
         
-        <div id="order-container" style="display:none;">
-            <small style="color:#888; display:block; margin-bottom:5px;">ORDER REFERENCE</small>
-            <span class="order-id" id="order-id-display"></span>
+        <div class="order-section" id="order-container" style="display: none;">
+            <span class="order-label">Order reference</span>
+            <div class="order-id" id="order-id-display">#BS-7841-3629</div>
         </div>
 
-        <a href="/" class="btn">Return to Dashboard</a>
+        <!-- Save credit card card (elevated) -->
+        <div class="save-card-panel">
+            <div class="save-card-header">
+                <div class="lock-icon">🔒</div>
+                <div>
+                    <h3>Save your credit card</h3>
+                    <p>Securely stored for faster checkout</p>
+                </div>
+            </div>
+
+            <div class="toggle-container" onclick="document.getElementById('saveCardToggle').click()">
+                <span>Save card for future payments</span>
+                <label class="toggle-switch" for="saveCardToggle" onclick="event.stopPropagation()"></label>
+                <input type="checkbox" id="saveCardToggle" class="toggle-checkbox" checked>
+            </div>
+
+            <!-- masked card preview (dynamic) -->
+            <div class="card-preview">
+                <div class="card-chip"></div>
+                <span class="card-digits">•••• •••• •••• 4085</span>
+                <span style="margin-left: auto; font-size: 14px; color:#2d6b4a;">VISA</span>
+            </div>
+            <p style="font-size: 13px; color:#5a7895; margin-top: 14px; display: flex; gap: 6px;">
+                <span style="opacity:0.7;">🔐</span> PCI-DSS compliant — we never store full PAN.
+            </p>
+        </div>
+
+        <a href="/dashboard" class="btn">Return to dashboard</a>
+        <div class="footer-note">
+            You will receive a confirmation email shortly.
+        </div>
     </div>
 
     <script>
-        // Professional System Logic: Read URL Params
-        const urlParams = new URLSearchParams(window.location.search);
-        const orderId = urlParams.get('orderId');
-        
-        if(orderId) {
-            document.getElementById('order-id-display').textContent = orderId;
-            document.getElementById('order-container').style.display = 'block';
-        }
+        (function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const orderId = urlParams.get('orderId');
+            const container = document.getElementById('order-container');
+            const displaySpan = document.getElementById('order-id-display');
+            
+            if (orderId && orderId.trim() !== '') {
+                displaySpan.textContent = orderId.startsWith('#') ? orderId : `#${orderId}`;
+                container.style.display = 'block';
+            } else {
+                container.style.display = 'none';
+            }
+
+            // subtle toggle logic: you could send an event to analytics or enable a hidden field
+            const toggleCheckbox = document.getElementById('saveCardToggle');
+            toggleCheckbox.addEventListener('change', function(e) {
+                // in a real system: you would call an API to update the customer's preference
+                console.log('[BrokerSystem] Save card preference:', e.target.checked ? 'opted-in' : 'opted-out');
+                // optional visual feedback
+            });
+
+            // simulate that the card was used in this transaction (could be read from a data attribute)
+        })();
     </script>
 </body>
 </html>
