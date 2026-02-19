@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Failed | BrokerSystem</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f7f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .card {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+            border-top: 4px solid #d32f2f;
+        }
+        .icon-circle {
+            width: 80px;
+            height: 80px;
+            background-color: #ffebee;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+        .icon-cross {
+            color: #d32f2f;
+            font-size: 40px;
+            line-height: 1;
+        }
+        h1 {
+            color: #1a1a1a;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        p {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        .error-box {
+            background: #fff5f5;
+            border: 1px solid #ffcdd2;
+            color: #c62828;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+        .btn {
+            background-color: #d32f2f;
+            color: white;
+            text-decoration: none;
+            padding: 12px 30px;
+            border-radius: 6px;
+            font-weight: 600;
+            display: inline-block;
+            transition: opacity 0.2s;
+        }
+        .btn:hover {
+            opacity: 0.9;
+        }
+        .support-link {
+            display: block;
+            margin-top: 20px;
+            color: #888;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .support-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="icon-circle">
+            <span class="icon-cross">✕</span>
+        </div>
+        <h1>Payment Failed</h1>
+        <p>We couldn't process your payment.</p>
+        
+        <div class="error-box" id="error-message">
+            Unknown Error
+        </div>
+
+        <a href="/checkout" class="btn">Try Again</a>
+        <a href="/support" class="support-link">Contact Support</a>
+    </div>
+
+    <script>
+        // Professional System Logic: Read URL Params
+        const urlParams = new URLSearchParams(window.location.search);
+        // We decode the URI component to handle spaces/special chars from the backend
+        const reason = urlParams.get('reason');
+        
+        if(reason) {
+            document.getElementById('error-message').textContent = decodeURIComponent(reason);
+        }
+    </script>
+</body>
+</html>
